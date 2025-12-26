@@ -12,7 +12,7 @@ export async function signIn(formData: FormData) {
 
   if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`)
 
-  redirect("/library")
+  redirect("/")
 }
 
 export async function signOut() {
