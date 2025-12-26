@@ -3,17 +3,17 @@ import Link from "next/link"
 const WEEK_SCHEDULE = [
   {
     label: "Monday, Wednesday, Friday",
-    time: "8:00 AM",
+    time: "7:00 AM MT / 9:00 AM ET",
+    note: "Daily live class with rotating focus and intensity.",
+  },
+  {
+    label: "Tuesday, Thursday, Saturday",
+    time: "8:00 AM MT / 10:00 AM ET",
     note: "Daily live class with rotating focus and intensity.",
   },
   {
     label: "Tuesday & Thursday",
-    time: "9:00 AM",
-    note: "Bonus morning session for members who want more.",
-  },
-  {
-    label: "Tuesday & Thursday",
-    time: "6:00 PM",
+    time: "Coming soon",
     note: "Stretch class for recovery and mobility work.",
   },
 ]
@@ -31,7 +31,8 @@ export default function SchedulePage() {
               Consistent class times, new workouts each day.
             </h1>
             <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
-              Keep your body guessing and break the mundane rhythm with a custom workout tailored for you every week day.
+              Workouts change daily, but class times stay consistent. Times are listed in
+              MT and ET so everyone can plan ahead.
             </p>
           </div>
           <Link

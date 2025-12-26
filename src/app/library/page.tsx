@@ -2,7 +2,45 @@ import Link from "next/link"
 import { redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 
-const TYPES = ["cardio", "arms", "strength", "legs"] as const
+const TYPES = [
+  "high reps workout",
+  "mobility strength + stretch",
+  "standing core",
+  "cardio",
+  "arms",
+  "strength",
+  "legs",
+] as const
+
+const DEMO_WORKOUTS = [
+  {
+    id: "demo-high-reps",
+    title: "High Reps Workout",
+    workout_type: "high reps workout",
+    recording_url:
+      "https://us02web.zoom.us/rec/share/f6RqzyhOrchGZtDlcs3j8g5T0eb-lQomWGz9dkbs7Q6_lqmeKbv9uFNO2IZ5Apbg.q8spfL-PLL97gwYn",
+    passcode: "UZ06E#*n",
+    class_date: null,
+  },
+  {
+    id: "demo-mobility-strength-stretch",
+    title: "Mobility, Strength + Stretch",
+    workout_type: "mobility strength + stretch",
+    recording_url:
+      "https://us02web.zoom.us/rec/share/KBCtet1QwVdIUrWqWXY-3cxVffYfpERwqHvb70SxFev22797Ll57pytQklFMRyrk.4Bx_ACCgj9ImOSkB",
+    passcode: "N?23cp9L",
+    class_date: null,
+  },
+  {
+    id: "demo-standing-core",
+    title: "Standing Core",
+    workout_type: "standing core",
+    recording_url:
+      "https://us02web.zoom.us/rec/share/iV-tmLwOMbfjwuhtZ0MnhYimEENPfcc13SSXITtyiGFSuVR-DtzATlB0Z2L57lhz.sA4h4EaAJ8Su-ezE",
+    passcode: "*2Ty8@+%",
+    class_date: null,
+  },
+]
 
 export default async function LibraryPage({
   searchParams,
@@ -76,7 +114,7 @@ export default async function LibraryPage({
                   ? "bg-[color:var(--ws-navy)] text-white"
                   : "hover:bg-black/5"
               }`}
-              href={`/library?type=${t}`}
+              href={`/library?type=${encodeURIComponent(t)}`}
             >
               {t}
             </Link>
@@ -84,7 +122,9 @@ export default async function LibraryPage({
         </div>
 
         <div className="mt-10 grid gap-4">
-          {(data ?? []).map((w) => (
+          {[...DEMO_WORKOUTS, ...(data ?? [])]
+            .filter((w) => !type || w.workout_type === type)
+            .map((w) => (
             <a
               key={w.id}
               href={w.recording_url}
@@ -100,6 +140,11 @@ export default async function LibraryPage({
                   <div className="text-lg font-medium text-[color:var(--ws-ink)]">
                     {w.title}
                   </div>
+                  {"passcode" in w && w.passcode ? (
+                    <div className="mt-2 inline-flex rounded-full border border-black/10 px-3 py-1 text-xs text-[color:var(--ws-ink)]">
+                      Passcode: {w.passcode}
+                    </div>
+                  ) : null}
                   {w.class_date ? (
                     <div className="mt-1 text-sm text-[color:var(--ws-muted)]">
                       {new Date(w.class_date).toLocaleDateString()}

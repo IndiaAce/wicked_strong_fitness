@@ -22,6 +22,9 @@ export function SiteHeader() {
           <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/schedule">
             Schedule
           </Link>
+          <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/about-susan">
+            About Susan
+          </Link>
           <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/newsletter">
             Newsletter
           </Link>
