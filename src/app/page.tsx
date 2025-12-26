@@ -96,7 +96,7 @@ export default function HomePage() {
             <p className="mt-4 text-base text-[color:var(--ws-muted)]">
               We mix cardio bursts, strength sequencing, and mindful cooldowns to help you
               stay consistent without burning out. Everything is designed for real schedules
-              with classes you can actually make.
+              with classes you can actually make or revisit later.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
