@@ -1,4 +1,6 @@
 import Link from "next/link"
+import { redirect } from "next/navigation"
+import { createClient } from "@/lib/supabase/server"
 
 const WEEK_SCHEDULE = [
   {
@@ -18,7 +20,13 @@ const WEEK_SCHEDULE = [
   },
 ]
 
-export default function SchedulePage() {
+export default async function SchedulePage() {
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  if (!user) redirect("/login")
+
   return (
     <main className="min-h-screen">
       <div className="mx-auto max-w-6xl px-6 py-12">

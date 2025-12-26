@@ -104,12 +104,17 @@ export default function HomePage() {
               The Wicked Strong method
             </p>
             <h2 className="font-display mt-4 text-3xl text-[color:var(--ws-ink)] sm:text-4xl">
-              Stronger routines, softer landings.
+              Stronger routines, functional fitness.
             </h2>
             <p className="mt-4 text-base text-[color:var(--ws-muted)]">
-              We mix cardio bursts, strength sequencing, and mindful cooldowns to help you
-              stay consistent without burning out. Everything is designed for real schedules
-              with classes you can actually make or revisit later.
+              Wicked Strong focuses on strength, functional fitness, and recovery designed
+              for real life. Every class is built so you can train consistently, feel
+              strong, and keep moving. Our six weekly classes fit your schedule, with
+              options to attend live or revisit anytime. This is real training for real
+              bodies, guided by experience and built around a supportive community. Whether
+              you're lifting heavier than you ever thought you could or focusing on
+              movement, stability, and mobility, every class helps you stay capable,
+              confident, and powerful as you age.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
