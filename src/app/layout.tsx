@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Playfair_Display, Space_Grotesk } from "next/font/google"
 import "./globals.css"
+import { InviteRedirect } from "@/components/InviteRedirect"
 import { SiteHeader } from "@/components/SiteHeader"
 
 const spaceGrotesk = Space_Grotesk({
@@ -32,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${playfair.variable} antialiased`}
       >
+        <InviteRedirect />
         <SiteHeader />
         {children}
       </body>
