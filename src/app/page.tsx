@@ -185,7 +185,7 @@ export default function HomePage() {
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span>Stretch Class (Tue & Thu)</span>
+                <span>Stretch Class</span>
                 <span className="font-semibold text-[color:var(--ws-ink)]">Coming soon</span>
               </div>
             </div>

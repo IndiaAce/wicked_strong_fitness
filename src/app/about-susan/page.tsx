@@ -73,10 +73,10 @@ export default function AboutSusanPage() {
               <p className="mt-2 text-sm text-[color:var(--ws-muted)]">
                 Email:{" "}
                 <a
-                  href="mailto:temp@gmail.com"
+                  href="mailto:susan.yogafitness@gmail.com"
                   className="font-semibold text-[color:var(--ws-ink)] underline-offset-4 hover:underline"
                 >
-                  temp@gmail.com
+                  susan.yogafitness@gmail.com
                 </a>
               </p>
             </div>
