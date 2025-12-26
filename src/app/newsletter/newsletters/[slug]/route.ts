@@ -1,12 +1,13 @@
 import fs from "node:fs/promises"
 import path from "node:path"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(
-  _request: Request,
-  { params }: { params: { slug: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const decoded = decodeURIComponent(params.slug)
+  const { slug } = await params
+  const decoded = decodeURIComponent(slug)
   const safeName = path.basename(decoded)
   if (safeName !== decoded) {
     return new NextResponse("Not found", { status: 404 })
