@@ -12,7 +12,11 @@ export async function signIn(formData: FormData) {
 
   if (error) redirect(`/login?error=${encodeURIComponent(error.message)}`)
 
-  redirect("/")
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const role = user?.app_metadata?.role ?? user?.user_metadata?.role
+  redirect(role === "pd_member" ? "/pd/schedule" : "/")
 }
 
 export async function signOut() {

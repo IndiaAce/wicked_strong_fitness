@@ -98,6 +98,51 @@ export default function HomePage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-16">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
+          Our programs
+        </p>
+        <h2 className="font-display mt-4 text-3xl text-[color:var(--ws-ink)] sm:text-4xl">
+          Two programs, one community.
+        </h2>
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-black/10 bg-[color:var(--ws-pearl)] p-8 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
+              Wicked Strong Fitness
+            </p>
+            <h3 className="font-display mt-3 text-2xl text-[color:var(--ws-ink)]">
+              Strength training for adults.
+            </h3>
+            <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
+              Daily live classes on Zoom focused on progressive strength, functional fitness, and community. All levels welcome.
+            </p>
+            <Link
+              href="/login"
+              className="mt-6 inline-flex rounded-full bg-[color:var(--ws-navy)] px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
+            >
+              Member login
+            </Link>
+          </div>
+          <div className="rounded-3xl border border-black/10 bg-[color:var(--ws-sand)] p-8 shadow-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
+              Wicked Strong PD
+            </p>
+            <h3 className="font-display mt-3 text-2xl text-[color:var(--ws-ink)]">
+              Virtual fitness for Parkinson's.
+            </h3>
+            <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
+              Specialized virtual classes focused on balance, strength, and mobility for individuals living with Parkinson's Disease. Now accepting new participants.
+            </p>
+            <Link
+              href="/pd"
+              className="mt-6 inline-flex rounded-full border border-black/10 px-5 py-2 text-sm font-semibold text-[color:var(--ws-ink)] hover:bg-black/5"
+            >
+              Learn more
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
