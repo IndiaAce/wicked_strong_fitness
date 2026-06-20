@@ -9,6 +9,8 @@ export async function SiteHeader() {
     data: { user },
   } = await supabase.auth.getUser()
   const loggedIn = !!user
+  const role = user?.app_metadata?.role ?? user?.user_metadata?.role
+  const isPd = role === "pd_member"
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/5 bg-[color:var(--ws-pearl)] backdrop-blur">
@@ -27,7 +29,22 @@ export async function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-3 text-sm font-medium text-[color:var(--ws-ink)] md:flex">
-          {loggedIn ? (
+          {loggedIn && isPd ? (
+            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/schedule">
+              Schedule
+            </Link>
+          ) : null}
+          {loggedIn && isPd ? (
+            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/library">
+              Library
+            </Link>
+          ) : null}
+          {loggedIn && isPd ? (
+            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/newsletter">
+              Resources
+            </Link>
+          ) : null}
+          {loggedIn && !isPd ? (
             <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/schedule">
               Schedule
             </Link>
@@ -35,7 +52,7 @@ export async function SiteHeader() {
           <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/about-susan">
             About Susan
           </Link>
-          {loggedIn ? (
+          {loggedIn && !isPd ? (
             <Link
               className="rounded-full px-4 py-2 hover:bg-black/5"
               href="/newsletter"
@@ -43,7 +60,7 @@ export async function SiteHeader() {
               Newsletter
             </Link>
           ) : null}
-          {loggedIn ? (
+          {loggedIn && !isPd ? (
             <Link
               href="/library"
               className="rounded-full px-4 py-2 hover:bg-black/5"
