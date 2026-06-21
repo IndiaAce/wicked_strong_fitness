@@ -2,13 +2,20 @@
 
 :root {
   --ws-navy: #1f478e;
+  --ws-navy-deep: #163565;
   --ws-blue: #0487b5;
   --ws-sky: #80cbe0;
+  --ws-sky-pale: #d6ecf3;
   --ws-sand: #f6f3ee;
+  --ws-cream: #faf7f1;
+  --ws-paper: #f4efe6;
   --ws-ink: #0b0f14;
+  --ws-charcoal: #1a1f29;
   --ws-muted: #5f6775;
   --ws-pearl: #f7f8fb;
-  --background: var(--ws-pearl);
+  --ws-line: rgba(11, 15, 20, 0.1);
+  --ws-line-soft: rgba(11, 15, 20, 0.05);
+  --background: var(--ws-cream);
   --foreground: var(--ws-ink);
 }
 
@@ -16,17 +23,24 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-space-grotesk);
-  --font-display: var(--font-playfair);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --ws-navy: #6ea9ff;
+    --ws-navy-deep: #4f7fd6;
+    --ws-sky-pale: #1a2b3a;
     --ws-ink: #f4f6fb;
+    --ws-charcoal: #d8dde6;
     --ws-muted: #c6ccd8;
     --ws-sand: #111823;
+    --ws-cream: #0b111a;
+    --ws-paper: #131b27;
     --ws-pearl: #0b111a;
+    --ws-line: rgba(255, 255, 255, 0.12);
+    --ws-line-soft: rgba(255, 255, 255, 0.06);
     --background: #0b111a;
     --foreground: #f4f6fb;
   }
