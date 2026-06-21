@@ -17,6 +17,10 @@
   --ws-line-soft: rgba(11, 15, 20, 0.05);
   --background: var(--ws-cream);
   --foreground: var(--ws-ink);
+  /* The "Safe" design is a light-first cream + navy system with hardcoded
+     white surfaces. Lock light rendering so system dark mode doesn't invert
+     token text colors onto those white cards (which would break contrast). */
+  color-scheme: light;
 }
 
 
@@ -25,25 +29,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-display: var(--font-inter);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ws-navy: #6ea9ff;
-    --ws-navy-deep: #4f7fd6;
-    --ws-sky-pale: #1a2b3a;
-    --ws-ink: #f4f6fb;
-    --ws-charcoal: #d8dde6;
-    --ws-muted: #c6ccd8;
-    --ws-sand: #111823;
-    --ws-cream: #0b111a;
-    --ws-paper: #131b27;
-    --ws-pearl: #0b111a;
-    --ws-line: rgba(255, 255, 255, 0.12);
-    --ws-line-soft: rgba(255, 255, 255, 0.06);
-    --background: #0b111a;
-    --foreground: #f4f6fb;
-  }
 }
 
 body {
