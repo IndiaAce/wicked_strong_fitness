@@ -29,88 +29,63 @@ export default async function NewsletterPage() {
   const isAdmin = role === "admin" || (!!userEmail && adminEmails.includes(userEmail))
 
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
-              Newsletter hub
-            </p>
-            <h1 className="font-display mt-4 text-3xl text-[color:var(--ws-ink)] sm:text-4xl">
-              Latest newsletters and studio updates.
-            </h1>
-            <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
+    <main className="ws-member">
+      <div className="ws-member-page">
+        <div className="ws-member-hello">
+          <div>
+            <div className="ws-eyebrow">Newsletter hub</div>
+            <h1 className="ws-member-h1">Latest newsletters and studio updates.</h1>
+            <p className="ws-member-sub">
               Browse the most recent newsletters and download the PDFs anytime.
             </p>
           </div>
-          <Link
-            href="/"
-            className="rounded-full border border-black/10 px-4 py-2 text-sm hover:bg-black/5"
-          >
+          <Link href="/" className="ws-btn ws-btn-ghost">
             Home
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
-          <div className="rounded-3xl border border-black/10 bg-[color:var(--ws-sand)] p-6 shadow-sm">
-            <h2 className="font-display text-2xl text-[color:var(--ws-ink)]">
-              Latest newsletters
-            </h2>
-            <div className="mt-6 space-y-4 text-sm text-[color:var(--ws-muted)]">
-              {NEWSLETTERS.map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-2xl border border-black/10 bg-[color:var(--ws-pearl)] p-4"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="mt-2 text-base font-semibold text-[color:var(--ws-ink)]">
-                        {item.title}
-                      </div>
-                    </div>
-                    <Link
-                      href={`/newsletter/newsletters/${encodeURIComponent(item.file)}`}
-                      className="rounded-full border border-black/10 px-3 py-1 text-xs font-semibold text-[color:var(--ws-ink)]"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      View PDF
-                    </Link>
-                  </div>
-                </div>
-              ))}
+        <div className="ws-member-list">
+          {NEWSLETTERS.map((item) => (
+            <div key={item.title} className="ws-member-row ws-member-row-news">
+              <div className="ws-member-row-body">
+                <div className="ws-member-row-title">{item.title}</div>
+              </div>
+              <Link
+                href={`/newsletter/newsletters/${encodeURIComponent(item.file)}`}
+                className="ws-btn ws-btn-ghost ws-btn-small"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View PDF
+              </Link>
             </div>
-          </div>
-
-          {isAdmin ? (
-            <div className="rounded-3xl border border-black/10 bg-[color:var(--ws-pearl)] p-6 shadow-sm">
-              <h2 className="font-display text-2xl text-[color:var(--ws-ink)]">
-                Upload new newsletter
-              </h2>
-              <p className="mt-2 text-sm text-[color:var(--ws-muted)]">
-                Admin-only upload. Connect this to storage when you are ready.
-              </p>
-              <form className="mt-6 space-y-4">
-                <input
-                  type="text"
-                  placeholder="Newsletter title"
-                  className="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm"
-                />
-                <input
-                  type="file"
-                  accept="application/pdf"
-                  className="w-full rounded-2xl border border-black/10 px-4 py-3 text-sm"
-                />
-                <button
-                  type="button"
-                  className="rounded-full bg-[color:var(--ws-navy)] px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
-                >
-                  Upload PDF
-                </button>
-              </form>
-            </div>
-          ) : null}
+          ))}
         </div>
+
+        {isAdmin ? (
+          <div className="ws-member-card" style={{ marginTop: "24px", maxWidth: "520px" }}>
+            <div className="ws-eyebrow">Admin</div>
+            <h2>Upload new newsletter</h2>
+            <p className="ws-member-muted">
+              Admin-only upload. Connect this to storage when you are ready.
+            </p>
+            <form className="ws-member-card-row" style={{ flexDirection: "column", gap: "12px" }}>
+              <input
+                type="text"
+                placeholder="Newsletter title"
+                className="w-full rounded-xl border border-[color:var(--ws-line)] bg-[color:var(--ws-cream)] px-4 py-3 text-sm"
+              />
+              <input
+                type="file"
+                accept="application/pdf"
+                className="w-full rounded-xl border border-[color:var(--ws-line)] bg-[color:var(--ws-cream)] px-4 py-3 text-sm"
+              />
+              <button type="button" className="ws-btn ws-btn-primary">
+                Upload PDF
+              </button>
+            </form>
+          </div>
+        ) : null}
       </div>
     </main>
   )

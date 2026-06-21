@@ -13,31 +13,24 @@ export default async function PDResourcesPage() {
   if (role !== "pd_member") redirect("/")
 
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
-              Wicked Strong PD
-            </p>
-            <h1 className="font-display mt-4 text-3xl text-[color:var(--ws-ink)] sm:text-4xl">
-              Resources &amp; Updates
-            </h1>
-            <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
+    <main className="ws-member">
+      <div className="ws-member-page">
+        <div className="ws-member-hello">
+          <div>
+            <div className="ws-eyebrow">Wicked Strong PD</div>
+            <h1 className="ws-member-h1">Resources &amp; updates</h1>
+            <p className="ws-member-sub">
               Class updates, educational resources, and program newsletters for PD members.
             </p>
           </div>
-          <Link
-            href="/pd/schedule"
-            className="rounded-full border border-black/10 px-4 py-2 text-sm hover:bg-black/5"
-          >
+          <Link href="/pd/schedule" className="ws-btn ws-btn-ghost">
             Schedule
           </Link>
         </div>
 
-        <div className="mt-10 rounded-3xl border border-black/10 bg-[color:var(--ws-pearl)] p-10 text-center">
-          <p className="font-display text-xl text-[color:var(--ws-ink)]">Resources coming soon</p>
-          <p className="mt-2 text-sm text-[color:var(--ws-muted)]">
+        <div className="ws-member-card" style={{ textAlign: "center", padding: "40px" }}>
+          <h3>Resources coming soon</h3>
+          <p className="ws-member-muted">
             Newsletters, tips, and educational materials for the PD program will be shared here.
           </p>
         </div>

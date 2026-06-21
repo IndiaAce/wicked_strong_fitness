@@ -18,35 +18,24 @@ export default async function PDLibraryPage() {
     .order("class_date", { ascending: false })
 
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex items-start justify-between gap-6">
+    <main className="ws-member">
+      <div className="ws-member-page">
+        <div className="ws-member-hello">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
-              Wicked Strong PD
-            </p>
-            <h1 className="font-display mt-4 text-3xl font-semibold text-[color:var(--ws-ink)]">
-              Class Recordings
-            </h1>
-            <p className="mt-2 text-[color:var(--ws-muted)]">
-              Access recordings from past PD classes anytime.
-            </p>
+            <div className="ws-eyebrow">Wicked Strong PD</div>
+            <h1 className="ws-member-h1">Class recordings</h1>
+            <p className="ws-member-sub">Access recordings from past PD classes anytime.</p>
           </div>
-          <Link
-            className="rounded-full border border-black/10 px-4 py-2 text-sm hover:bg-black/5"
-            href="/pd/schedule"
-          >
+          <Link className="ws-btn ws-btn-ghost" href="/pd/schedule">
             Schedule
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-4">
+        <div className="ws-member-list">
           {error || !data || data.length === 0 ? (
-            <div className="rounded-3xl border border-black/10 bg-[color:var(--ws-pearl)] p-10 text-center">
-              <p className="font-display text-xl text-[color:var(--ws-ink)]">
-                Recordings coming soon
-              </p>
-              <p className="mt-2 text-sm text-[color:var(--ws-muted)]">
+            <div className="ws-member-card" style={{ textAlign: "center", padding: "40px" }}>
+              <h3>Recordings coming soon</h3>
+              <p className="ws-member-muted">
                 Past class recordings will appear here. Check back after your first session!
               </p>
             </div>
@@ -57,24 +46,17 @@ export default async function PDLibraryPage() {
                 href={w.recording_url}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-2xl border border-black/10 bg-[color:var(--ws-pearl)] p-5 shadow-sm hover:bg-black/5"
+                className="ws-member-row"
               >
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-lg font-medium text-[color:var(--ws-ink)]">
-                      {w.title}
-                    </div>
-                    {w.class_date ? (
-                      <div className="mt-1 text-sm text-[color:var(--ws-muted)]">
-                        {new Date(w.class_date).toLocaleDateString()}
-                      </div>
-                    ) : null}
-                    {w.notes ? (
-                      <div className="mt-2 text-sm text-[color:var(--ws-muted)]">{w.notes}</div>
-                    ) : null}
+                <div className="ws-member-row-thumb">▶</div>
+                <div className="ws-member-row-body">
+                  <div className="ws-member-row-title">{w.title}</div>
+                  <div className="ws-member-row-meta">
+                    {w.class_date ? new Date(w.class_date).toLocaleDateString() : null}
+                    {w.notes ? `${w.class_date ? " · " : ""}${w.notes}` : null}
                   </div>
-                  <div className="text-sm text-[color:var(--ws-muted)]">Open</div>
                 </div>
+                <span className="ws-btn ws-btn-ghost ws-btn-small">Watch</span>
               </a>
             ))
           )}
