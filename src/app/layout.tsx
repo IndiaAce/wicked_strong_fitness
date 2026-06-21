@@ -1,16 +1,14 @@
 import type { Metadata } from "next"
-import { Playfair_Display, Space_Grotesk } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
+import "@/styles/ws-design.css"
 import { InviteRedirect } from "@/components/InviteRedirect"
 import { SiteHeader } from "@/components/SiteHeader"
+import { ProgramProvider } from "@/components/program/ProgramProvider"
+import { Splash } from "@/components/program/Splash"
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-})
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 })
 
@@ -30,12 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${spaceGrotesk.variable} ${playfair.variable} antialiased`}
-      >
-        <InviteRedirect />
-        <SiteHeader />
-        {children}
+      <body className={`${inter.variable} antialiased`}>
+        <ProgramProvider>
+          <InviteRedirect />
+          <Splash />
+          <SiteHeader />
+          {children}
+        </ProgramProvider>
       </body>
     </html>
   )

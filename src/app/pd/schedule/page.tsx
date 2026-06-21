@@ -44,58 +44,41 @@ export default async function PDSchedulePage() {
   if (role !== "pd_member") redirect("/")
 
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <div className="flex flex-wrap items-start justify-between gap-6">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
-              Wicked Strong PD
-            </p>
-            <h1 className="font-display mt-4 text-3xl text-[color:var(--ws-ink)] sm:text-4xl">
-              Your weekly class schedule.
-            </h1>
-            <p className="mt-3 text-sm text-[color:var(--ws-muted)]">
-              Classes run Monday, Tuesday, Thursday, Friday, and Saturday. Join from home via Zoom — a chair and light weights are recommended.
+    <main className="ws-member">
+      <div className="ws-member-page">
+        <div className="ws-member-hello">
+          <div>
+            <div className="ws-eyebrow">Wicked Strong PD</div>
+            <h1 className="ws-member-h1">Your weekly class schedule.</h1>
+            <p className="ws-member-sub">
+              Classes run Monday, Tuesday, Thursday, Friday, and Saturday. Join from home via
+              Zoom — a chair and light weights are recommended.
             </p>
           </div>
-          <Link
-            href="/pd"
-            className="rounded-full border border-black/10 px-4 py-2 text-sm hover:bg-black/5"
-          >
+          <Link href="/pd" className="ws-btn ws-btn-ghost">
             About the program
           </Link>
         </div>
 
         {ZOOM_LINK ? (
-          <div className="mt-8 rounded-2xl border border-black/10 bg-[color:var(--ws-sand)] p-5">
-            <p className="text-sm font-semibold text-[color:var(--ws-ink)]">Join class on Zoom</p>
-            <a
-              href={ZOOM_LINK}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-2 inline-flex rounded-full bg-[color:var(--ws-navy)] px-5 py-2 text-sm font-semibold text-white hover:opacity-90"
-            >
-              Open Zoom link
-            </a>
+          <div className="ws-member-card ws-member-card-feature" style={{ marginBottom: "24px" }}>
+            <div className="ws-eyebrow">Join class on Zoom</div>
+            <div className="ws-member-card-row">
+              <a href={ZOOM_LINK} target="_blank" rel="noreferrer" className="ws-btn ws-btn-primary">
+                Open Zoom link
+              </a>
+            </div>
           </div>
         ) : null}
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="ws-member-list">
           {CLASS_SCHEDULE.map((slot) => (
-            <div
-              key={slot.days}
-              className="rounded-3xl border border-black/10 bg-[color:var(--ws-pearl)] p-6 shadow-sm"
-            >
-              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[color:var(--ws-navy)]">
-                {slot.days}
+            <div key={slot.days} className="ws-member-row">
+              <div className="ws-member-row-body">
+                <div className="ws-eyebrow ws-eyebrow-small">{slot.days}</div>
+                <div className="ws-member-row-meta">{slot.note}</div>
               </div>
-              <div className="mt-3 flex items-center justify-between">
-                <h2 className="font-display text-xl text-[color:var(--ws-ink)]">Class time</h2>
-                <span className="rounded-full bg-[color:var(--ws-sand)] px-3 py-1 text-xs font-semibold text-[color:var(--ws-ink)]">
-                  {slot.time}
-                </span>
-              </div>
-              <p className="mt-3 text-sm text-[color:var(--ws-muted)]">{slot.note}</p>
+              <span className="ws-chip">{slot.time}</span>
             </div>
           ))}
         </div>

@@ -2,6 +2,15 @@ import Image from "next/image"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { signOut } from "@/app/login/actions"
+import { ProgramSwitcher } from "@/components/program/ProgramSwitcher"
+
+const publicNav = [
+  { href: "/#home", label: "Home" },
+  { href: "/#method", label: "Method" },
+  { href: "/#schedule", label: "Schedule" },
+  { href: "/about-susan", label: "About Susan" },
+  { href: "/#faq", label: "FAQ" },
+]
 
 export async function SiteHeader() {
   const supabase = await createClient()
@@ -13,96 +22,68 @@ export async function SiteHeader() {
   const isPd = role === "pd_member"
 
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-[color:var(--ws-pearl)] backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/brand/ws-logo-color.png"
-            alt="Wicked Strong"
-            width={56}
-            height={56}
-            priority
-          />
-          <span className="font-display text-lg font-semibold tracking-wide text-[color:var(--ws-ink)]">
-            Wicked Strong
-          </span>
+    <header className="ws-header">
+      <div className="ws-header-inner">
+        <Link href="/" className="ws-header-brand">
+          <Image src="/brand/ws-logo-color.png" alt="" width={36} height={36} priority />
+          <span>Wicked Strong</span>
         </Link>
 
-        <nav className="hidden items-center gap-3 text-sm font-medium text-[color:var(--ws-ink)] md:flex">
-          {loggedIn && isPd ? (
-            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/schedule">
-              Schedule
-            </Link>
-          ) : null}
-          {loggedIn && isPd ? (
-            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/library">
-              Library
-            </Link>
-          ) : null}
-          {loggedIn && isPd ? (
-            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/pd/newsletter">
-              Resources
-            </Link>
-          ) : null}
-          {loggedIn && !isPd ? (
-            <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/schedule">
-              Schedule
-            </Link>
-          ) : null}
-          <Link className="rounded-full px-4 py-2 hover:bg-black/5" href="/about-susan">
-            About Susan
-          </Link>
-          {loggedIn && !isPd ? (
-            <Link
-              className="rounded-full px-4 py-2 hover:bg-black/5"
-              href="/newsletter"
-            >
-              Newsletter
-            </Link>
-          ) : null}
-          {loggedIn && !isPd ? (
-            <Link
-              href="/library"
-              className="rounded-full px-4 py-2 hover:bg-black/5"
-            >
-              Library
-            </Link>
-          ) : null}
+        <nav className="ws-header-nav" aria-label="Primary">
+          {loggedIn ? (
+            <>
+              {isPd ? (
+                <>
+                  <Link className="ws-header-link" href="/pd/schedule">
+                    Schedule
+                  </Link>
+                  <Link className="ws-header-link" href="/pd/library">
+                    Library
+                  </Link>
+                  <Link className="ws-header-link" href="/pd/newsletter">
+                    Resources
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link className="ws-header-link" href="/schedule">
+                    Schedule
+                  </Link>
+                  <Link className="ws-header-link" href="/library">
+                    Library
+                  </Link>
+                  <Link className="ws-header-link" href="/newsletter">
+                    Newsletter
+                  </Link>
+                </>
+              )}
+              <Link className="ws-header-link" href="/about-susan">
+                About Susan
+              </Link>
+            </>
+          ) : (
+            publicNav.map((n) => (
+              <Link key={n.href} className="ws-header-link" href={n.href}>
+                {n.label}
+              </Link>
+            ))
+          )}
+        </nav>
+
+        <div className="ws-header-actions">
+          {!loggedIn ? <ProgramSwitcher /> : null}
           {loggedIn ? (
             <form action={signOut}>
-              <button
-                type="submit"
-                className="rounded-full bg-[color:var(--ws-navy)] px-4 py-2 text-white hover:opacity-90"
-              >
-                Log out
+              <button type="submit" className="ws-btn ws-btn-ghost">
+                Sign out
               </button>
             </form>
           ) : (
-            <Link
-              href="/login"
-              className="rounded-full bg-[color:var(--ws-navy)] px-4 py-2 text-white hover:opacity-90"
-            >
+            <Link href="/login" className="ws-btn ws-btn-primary">
               Member login
             </Link>
           )}
-        </nav>
-        {loggedIn ? (
-          <form action={signOut} className="md:hidden">
-            <button
-              type="submit"
-              className="rounded-full bg-[color:var(--ws-navy)] px-4 py-2 text-sm text-white hover:opacity-90"
-            >
-              Log out
-            </button>
-          </form>
-        ) : (
-          <Link
-            href="/login"
-            className="rounded-full bg-[color:var(--ws-navy)] px-4 py-2 text-sm text-white hover:opacity-90 md:hidden"
-          >
-            Member login
-          </Link>
-        )}
+        </div>
       </div>
     </header>
   )
